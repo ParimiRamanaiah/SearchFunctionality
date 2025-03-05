@@ -1,0 +1,93 @@
+<mvc:View controllerName="com.ram.search.controller.Search"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+    <content>
+    <VBox justifyContent="Center" alignItems="Center">
+      <HBox alignItems="Center">
+        <SearchField id="searchField" liveChange="onLiveChange" placeholder="Search" width="125%" enabled="true"/>
+        <BusyIndicator id="busyIndicator" size="0.6rem" visible="false" />
+      </HBox>
+    </VBox>
+
+
+    <!-- <Table id="userTable" items="{users>/results}">
+    <columns>
+        <Column>
+            <Text text="User ID"/>
+        </Column>
+        <Column>
+            <Text text="First Name"/>
+        </Column>
+        <Column>
+            <Text text="Last Name"/>
+        </Column>
+        <Column>
+            <Text text="Email"/>
+        </Column>
+    </columns>
+    <items>
+        <ColumnListItem>
+            <cells>
+                <Text text="{users>userId}"/>
+                <Text text="{users>firstName}"/>
+                <Text text="{users>lastName}"/>
+                <Text text="{users>emailId}"/>
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table> -->
+
+    <ResponsivePopover id="userPopover" placement="Bottom" contentWidth="350px" showHeader="false" showArrow="false">
+      <ScrollContainer id="scroll" vertical="true">
+        <List items="{users>/results}" itemPress="onItemPress" growing="true" growingScrollToLoad="true" growingThreshold="100" growingDirection="Downwards" growingTriggerText="More" inset="false" showNoData="true" noDataText="There were no results">
+
+          <!-- <StandardListItem title="{users>firstName} {users>lastName} ({users>userId})" class="noFocusOutline" icon="sap-icon://employee" tooltip="{= ${users>firstName} + ' ' + ${users>lastName} }" type="Active" highlight="None" description=""/> -->
+
+          <!-- <StandardListItem title="{path: 'users>firstName', formatter: '.formatHighlightedText'} {path: 'users>lastName', formatter: '.formatHighlightedText'} ({users>userId})" class="noFocusOutline" icon="sap-icon://employee" tooltip="{= ${users>firstName} + ' ' + ${users>lastName} }" type="Active" highlight="None" description="" -->
+
+          <CustomListItem class="noFocusOutline image" tooltip="{= ${users>firstName} + ' ' + ${users>lastName} }" type="Active">
+            <VBox>
+              <FormattedText htmlText="{path: 'users>firstName', formatter: '.formatHighlightedText'}  {path: 'users>lastName', formatter: '.formatHighlightedText'}  ({users>userId})" class="text"/>
+              <!-- <FormattedText htmlText="{path: 'users>lastName', formatter: '.formatHighlightedText'}"/> -->
+            </VBox>
+          </CustomListItem>
+
+        </List>
+      </ScrollContainer>
+    </ResponsivePopover>
+
+
+    <Table id="userTable" items="{selectedUser>/selectedUser}" visible="false">
+      <columns>
+        <Column>
+          <Text text="User ID" />
+        </Column>
+        <Column>
+          <Text text="First Name" />
+        </Column>
+        <Column>
+          <Text text="Last Name" />
+        </Column>
+        <Column>
+          <Text text="Mobile Number" />
+        </Column>
+        <Column>
+          <Text text="Email ID" />
+        </Column>
+      </columns>
+      <items>
+        <ColumnListItem>
+          <cells>
+            <Text text="{selectedUser>userId}" />
+            <Text text="{selectedUser>firstName}" />
+            <Text text="{selectedUser>lastName}" />
+            <Text text="{selectedUser>mobileNumber}" />
+            <Text text="{selectedUser>emailId}" />
+          </cells>
+        </ColumnListItem>
+      </items>
+    </Table>
+    </content>
+    </Page>
+</mvc:View>
