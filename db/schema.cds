@@ -4,7 +4,7 @@ entity User {
     key userId: Integer;
     firstName: String;
     lastName: String;
-    mobileNumber: Integer;
+    mobileNumber: Int64;
     gender: String;
     emailId: String;
     Password: String;
